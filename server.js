@@ -16,10 +16,12 @@ app.get("/",function(req,res){
 
 app.post("/",function(req,res){
 
+    console.log(req.body)
+
     const cityName = req.body.city
     
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=8e78e7bd4f79e81d23f6ebf64eeb7172&units=metric"
-    https.get(url,function(response){
+    // https.get(url,function(response){
         response.on("data",function(data){
             const weatherData = JSON.parse(data)
             const temp = weatherData.main.temp
@@ -37,7 +39,7 @@ app.post("/",function(req,res){
     })
 
 
-})
+
 app.listen(process.env.PORT || 8080,function(){
     console.log("server started at port 8080")
 })
